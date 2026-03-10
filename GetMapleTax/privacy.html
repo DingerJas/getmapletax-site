@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — MapleTax</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #0d1535; --card: #131d3e; --accent: #4f46e5; --text: #ffffff; --muted: #94a3b8; --border: rgba(255,255,255,0.08); }
+    body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(79,70,229,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(79,70,229,0.04) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    nav { position: relative; z-index: 10; display: flex; align-items: center; justify-content: space-between; padding: 24px 40px; border-bottom: 1px solid var(--border); }
+    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-icon { width: 40px; height: 40px; background: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; }
+    .logo-text { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800; color: var(--text); }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+    .page-hero { position: relative; z-index: 1; padding: 60px 40px 40px; max-width: 800px; margin: 0 auto; }
+    .page-tag { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 16px; }
+    .page-title { font-family: 'Syne', sans-serif; font-size: clamp(36px, 5vw, 56px); font-weight: 800; margin-bottom: 16px; }
+    .page-meta { color: var(--muted); font-size: 14px; }
+    .content { position: relative; z-index: 1; max-width: 800px; margin: 0 auto; padding: 20px 40px 80px; }
+    .content h2 { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; margin: 40px 0 16px; color: var(--text); padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .content p { color: var(--muted); line-height: 1.8; margin-bottom: 16px; font-size: 15px; }
+    .content ul { color: var(--muted); line-height: 1.8; margin-bottom: 16px; padding-left: 24px; font-size: 15px; }
+    .content ul li { margin-bottom: 8px; }
+    .content a { color: #a5b4fc; }
+    .highlight-box { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; margin: 24px 0; }
+    .highlight-box p { margin: 0; }
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-copy { color: var(--muted); font-size: 13px; }
+    @media (max-width: 640px) { nav { padding: 20px; } .nav-links { display: none; } .page-hero, .content { padding-left: 20px; padding-right: 20px; } footer { padding: 30px 20px; flex-direction: column; align-items: flex-start; } }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo">
+      <div class="logo-icon">🍁</div>
+      <span class="logo-text">MapleTax</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/privacy">Privacy</a></li>
+      <li><a href="/terms">Terms</a></li>
+      <li><a href="/support">Support</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-hero">
+    <p class="page-tag">Legal</p>
+    <h1 class="page-title">Privacy Policy</h1>
+    <p class="page-meta">Last updated: March 2026 &nbsp;·&nbsp; Effective: March 2026</p>
+  </div>
+
+  <div class="content">
+    <div class="highlight-box">
+      <p>MapleTax is committed to protecting your privacy. This policy explains what information we collect, how we use it, and your rights as a Canadian user under PIPEDA (Personal Information Protection and Electronic Documents Act).</p>
+    </div>
+
+    <h2>1. Information We Collect</h2>
+    <p>We collect only the information necessary to provide the MapleTax service:</p>
+    <ul>
+      <li><strong>Account Information:</strong> Email address used to create your account via Supabase authentication.</li>
+      <li><strong>Receipt Data:</strong> Vendor names, dates, amounts, HST, categories, and descriptions you enter or scan.</li>
+      <li><strong>Business Profile:</strong> Optional business name, address, HST/GST registration number, and fiscal year you provide.</li>
+      <li><strong>Receipt Images:</strong> Photos or images you upload for AI-assisted scanning. Images are processed and not stored permanently.</li>
+      <li><strong>Usage Data:</strong> Basic app usage data such as scan counts, used to enforce plan limits.</li>
+    </ul>
+
+    <h2>2. How We Use Your Information</h2>
+    <ul>
+      <li>To provide the receipt scanning, storage, and export features of MapleTax.</li>
+      <li>To calculate HST and generate CRA-compliant expense reports.</li>
+      <li>To sync your data securely across devices (paid plans).</li>
+      <li>To manage your subscription and enforce plan feature limits.</li>
+      <li>To respond to support requests you submit.</li>
+    </ul>
+    <p>We do not sell, rent, or share your personal information with third parties for marketing purposes.</p>
+
+    <h2>3. AI Processing (Gemini Vision)</h2>
+    <p>When you scan a receipt, the image is sent to Google's Gemini Vision API for text extraction. This processing is governed by Google's privacy policy. Images are transmitted securely over HTTPS and are not stored by MapleTax after processing is complete.</p>
+
+    <h2>4. Data Storage (Supabase)</h2>
+    <p>Your receipt data and account information are stored securely using Supabase, a cloud database platform with enterprise-grade encryption at rest and in transit. Data is stored in compliance with applicable Canadian privacy laws.</p>
+
+    <h2>5. CRA Record Retention</h2>
+    <p>The Canada Revenue Agency requires businesses to retain financial records for a minimum of <strong>6 years</strong>. MapleTax Pro retains your receipt data for this period to support CRA compliance. You may request deletion of your data at any time, subject to any legal retention obligations.</p>
+
+    <h2>6. Data Sharing</h2>
+    <p>We share your data only with the following service providers as necessary to operate MapleTax:</p>
+    <ul>
+      <li><strong>Supabase</strong> — secure cloud database and authentication</li>
+      <li><strong>Google Gemini API</strong> — AI receipt scanning</li>
+      <li><strong>Apple</strong> — in-app purchase processing (paid plans)</li>
+      <li><strong>RevenueCat</strong> — subscription management</li>
+    </ul>
+    <p>All service providers are contractually required to protect your data and use it only as directed by us.</p>
+
+    <h2>7. Your Rights (PIPEDA)</h2>
+    <p>As a Canadian user, you have the right to:</p>
+    <ul>
+      <li>Access the personal information we hold about you</li>
+      <li>Request correction of inaccurate information</li>
+      <li>Request deletion of your account and data</li>
+      <li>Withdraw consent for non-essential data processing</li>
+      <li>File a complaint with the Office of the Privacy Commissioner of Canada</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at <a href="mailto:privacy@getmapletax.ca">privacy@getmapletax.ca</a>.</p>
+
+    <h2>8. Data Security</h2>
+    <p>We implement industry-standard security measures including TLS/HTTPS encryption for all data in transit, AES-256 encryption for data at rest, row-level security policies, and regular security reviews. However, no method of transmission over the internet is 100% secure.</p>
+
+    <h2>9. Children's Privacy</h2>
+    <p>MapleTax is intended for use by individuals 18 years of age or older. We do not knowingly collect personal information from anyone under 18. If you believe a minor has provided us with personal information, please contact us immediately.</p>
+
+    <h2>10. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. We will notify you of significant changes by updating the date at the top of this page and, where appropriate, through the app. Continued use of MapleTax after changes constitutes acceptance of the updated policy.</p>
+
+    <h2>11. Contact Us</h2>
+    <p>For privacy-related questions or requests:</p>
+    <ul>
+      <li>Email: <a href="mailto:privacy@getmapletax.ca">privacy@getmapletax.ca</a></li>
+      <li>Website: <a href="https://getmapletax.ca">getmapletax.ca</a></li>
+    </ul>
+  </div>
+
+  <footer>
+    <a href="/" class="logo" style="text-decoration:none;">
+      <div class="logo-icon" style="width:32px;height:32px;font-size:16px;">🍁</div>
+      <span class="logo-text" style="font-size:16px;">MapleTax</span>
+    </a>
+    <div class="footer-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms & Conditions</a>
+      <a href="/support">Support</a>
+    </div>
+    <p class="footer-copy">© 2026 MapleTax. All rights reserved.</p>
+  </footer>
+</body>
+</html>

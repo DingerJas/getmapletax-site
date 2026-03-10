@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MapleTax — Canadian Receipt & Tax Tracker</title>
+  <meta name="description" content="MapleTax is the smart Canadian receipt tracker. Scan receipts, track HST, and export CRA-ready reports." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d1535;
+      --card: #131d3e;
+      --accent: #4f46e5;
+      --gold: #f59e0b;
+      --text: #ffffff;
+      --muted: #94a3b8;
+      --border: rgba(255,255,255,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background grid */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(79,70,229,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(79,70,229,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Glowing orbs */
+    .orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-1 { width: 600px; height: 600px; background: rgba(79,70,229,0.12); top: -200px; right: -200px; }
+    .orb-2 { width: 400px; height: 400px; background: rgba(245,158,11,0.06); bottom: 0; left: -100px; }
+
+    nav {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 40px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--accent);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .logo-text {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 100px 40px 80px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(79,70,229,0.15);
+      border: 1px solid rgba(79,70,229,0.3);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #a5b4fc;
+      letter-spacing: 0.5px;
+      margin-bottom: 32px;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(48px, 8vw, 80px);
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 24px;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #4f46e5, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 48px;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 40px rgba(79,70,229,0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 60px rgba(79,70,229,0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 16px 32px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.04);
+    }
+
+    /* Features */
+    .features {
+      position: relative;
+      z-index: 1;
+      padding: 80px 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(79,70,229,0.3);
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+    }
+
+    .feature-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .feature-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    /* CRA Section */
+    .cra-section {
+      position: relative;
+      z-index: 1;
+      margin: 0 40px 80px;
+      background: linear-gradient(135deg, #1a1a0e, #1e1a08);
+      border: 1px solid rgba(180,83,9,0.3);
+      border-radius: 24px;
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      max-width: 1020px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cra-icon { font-size: 56px; }
+
+    .cra-content h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .cra-content p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .cra-content p strong { color: #f59e0b; }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: gap;
+      gap: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--text); }
+
+    .footer-copy {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 60px 20px 60px; }
+      .features { padding: 60px 20px; }
+      .cra-section { flex-direction: column; text-align: center; margin: 0 20px 60px; padding: 32px 24px; }
+      footer { padding: 30px 20px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <nav>
+    <a href="/" class="logo">
+      <div class="logo-icon">🍁</div>
+      <span class="logo-text">MapleTax</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/privacy">Privacy</a></li>
+      <li><a href="/terms">Terms</a></li>
+      <li><a href="/support">Support</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-badge">🇨🇦 Built for Canadian businesses</div>
+    <h1>Track receipts.<br /><span>Claim every dollar.</span></h1>
+    <p>MapleTax uses AI to scan your receipts, calculate HST automatically, and generate CRA-ready expense reports — all from your iPhone.</p>
+    <div class="hero-buttons">
+      <a href="#" class="btn-primary">🍎 Download on App Store</a>
+      <a href="/support" class="btn-secondary">Get Support →</a>
+    </div>
+  </section>
+
+  <section class="features">
+    <p class="section-label">Features</p>
+    <h2 class="section-title">Everything you need at tax time</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">Turbo Scan AI</h3>
+        <p class="feature-desc">Point your camera at any receipt and our AI extracts vendor, date, subtotal, and HST instantly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧾</div>
+        <h3 class="feature-title">Smart Categories</h3>
+        <p class="feature-desc">Automatically categorizes expenses — Materials, Fuel, Office, Meals, and more. Edit anytime.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3 class="feature-title">PDF & CSV Export</h3>
+        <p class="feature-desc">Generate professional expense reports with your business info, ready for your accountant or the CRA.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">☁️</div>
+        <h3 class="feature-title">Secure Cloud Backup</h3>
+        <p class="feature-desc">Receipts are encrypted and stored securely in the cloud. Access from any device, anytime.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔢</div>
+        <h3 class="feature-title">Ontario HST Auto-Calc</h3>
+        <p class="feature-desc">One tap applies the 13% Ontario HST rate. Tracks your total claimable HST across all receipts.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3 class="feature-title">Spending Dashboard</h3>
+        <p class="feature-desc">See your total expenses, HST saved, and spending by category at a glance every time you open the app.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="cra-section">
+    <div class="cra-icon">🛡</div>
+    <div class="cra-content">
+      <h2>CRA Audit Protection</h2>
+      <p>The Canada Revenue Agency requires businesses to retain records for <strong>6 years</strong>. MapleTax Pro automatically keeps your receipts encrypted and backed up — so you're always covered if the CRA comes calling.</p>
+    </div>
+  </div>
+
+  <footer>
+    <a href="/" class="logo" style="text-decoration:none;">
+      <div class="logo-icon" style="width:32px;height:32px;font-size:16px;">🍁</div>
+      <span class="logo-text" style="font-size:16px;">MapleTax</span>
+    </a>
+    <div class="footer-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms & Conditions</a>
+      <a href="/support">Support</a>
+    </div>
+    <p class="footer-copy">© 2026 MapleTax. All rights reserved.</p>
+  </footer>
+</body>
+</html>
