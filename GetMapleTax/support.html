@@ -78,19 +78,19 @@
         <div class="icon">✉️</div>
         <h3>Email Support</h3>
         <p>For general questions, billing, or account issues. We respond within 1 business day.</p>
-        <a href="/cdn-cgi/l/email-protection#1b686e6b6b74696f5b7c7e6f767a6b777e6f7a6335787a"><span class="__cf_email__" data-cfemail="c9babcb9b9a6bbbd89aeacbda4a8b9a5acbda8b1e7aaa8">[email&#160;protected]</span></a>
+        <a href="mailto:support@getmapletax.ca">support@getmapletax.ca</a>
       </div>
       <div class="contact-card">
         <div class="icon">🔒</div>
         <h3>Privacy Requests</h3>
         <p>Data access, correction, or deletion requests under PIPEDA.</p>
-        <a href="/cdn-cgi/l/email-protection#4030322936212339002725342d21302c253421386e2321"><span class="__cf_email__" data-cfemail="3343415a4552504a735456475e52435f5647524b1d5052">[email&#160;protected]</span></a>
+        <a href="mailto:privacy@getmapletax.ca">privacy@getmapletax.ca</a>
       </div>
       <div class="contact-card">
         <div class="icon">⚖️</div>
         <h3>Legal Inquiries</h3>
         <p>Terms, licensing, or other legal matters.</p>
-        <a href="/cdn-cgi/l/email-protection#5c30393b3d301c3b3928313d2c3039283d24723f3d"><span class="__cf_email__" data-cfemail="335f5654525f735456475e52435f5647524b1d5052">[email&#160;protected]</span></a>
+        <a href="mailto:legal@getmapletax.ca">legal@getmapletax.ca</a>
       </div>
     </div>
 
@@ -155,13 +155,32 @@
 
     <div class="faq-item">
       <div class="faq-question" onclick="toggle(this)">
-        How do I delete my account and data?
+        How do I delete my account and all my data?
         <span class="chevron">▼</span>
       </div>
-      <div class="faq-answer">Email us at <a href="/cdn-cgi/l/email-protection#e292908b9483819ba28587968f83928e8796839acc8183"><span class="__cf_email__" data-cfemail="c3b3b1aab5a2a0ba83a4a6b7aea2b3afa6b7a2bbeda0a2">[email&#160;protected]</span></a> with your account email and a deletion request. We'll delete your account and associated data within 30 days, subject to any legal retention obligations under Canadian law.</div>
+      <div class="faq-answer">Go to Settings → Account → Delete Account. This permanently removes your account and all associated data from our servers. If you have an active subscription, it will be cancelled automatically. This action cannot be undone, so please export any data you need beforehand.</div>
     </div>
 
-  </div>
+  </div><!-- end .content -->
 
   <footer>
-    <a href="/" class="logo" style="te
+    <a href="/" class="logo">
+      <div class="logo-icon">🍁</div>
+      <span class="logo-text">MapleTax</span>
+    </a>
+    <div class="footer-links">
+      <a href="/privacy">Privacy Policy</a>
+      <a href="/terms">Terms of Service</a>
+      <a href="/support">Support</a>
+    </div>
+    <p class="footer-copy">© 2025 MapleTax. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggle(el) {
+      const item = el.closest('.faq-item');
+      item.classList.toggle('open');
+    }
+  </script>
+</body>
+</html>
