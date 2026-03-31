@@ -210,7 +210,7 @@
     .step-desc { font-size: 14px; color: var(--muted); line-height: 1.75; }
 
     /* ── Features Bento ── */
-    .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr) !important; gap: 18px; }
     .bento-card {
       background: var(--card); border: 1px solid var(--card-border);
       border-radius: 20px; padding: 28px;
@@ -331,8 +331,8 @@
       .nav-links { display: none; }
       .section-wrap { padding: 60px 24px; }
       .steps-grid { grid-template-columns: 1fr; }
-      .bento-grid { grid-template-columns: 1fr 1fr; }
-      .bento-card.wide { grid-column: span 2; }
+      .bento-grid { grid-template-columns: 1fr 1fr !important; }
+.bento-card.wide { grid-column: span 2 !important; }
       .pricing-grid { grid-template-columns: 1fr; max-width: 380px; margin-left: auto; margin-right: auto; }
       .cra-section { padding: 0 24px; }
       .cra-inner { flex-direction: column; text-align: center; padding: 32px 24px; }
