@@ -217,7 +217,7 @@
       transition: transform 0.2s, border-color 0.2s;
     }
     .bento-card:hover { transform: translateY(-4px); border-color: rgba(0,229,255,0.3); }
-    .bento-card.wide { grid-column: span 2; }
+    .bento-card.wide { grid-column: span 2 !important; }
     .bento-status {
       display: inline-flex; align-items: center; gap: 6px;
       padding: 4px 10px; border-radius: 6px; font-size: 10px; font-weight: 700;
@@ -342,7 +342,7 @@
     @media (max-width: 600px) {
   .hero { padding: 48px 24px 40px; }
   .bento-grid { grid-template-columns: 1fr; }
-  .bento-card.wide { grid-column: span 1; }
+  .bento-card.wide { grid-column: span 1 !important; }
   .hero-right { gap: 10px; }
   .phone-mockup { width: 110px; }
   .orb { display: none; }
