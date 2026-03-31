@@ -339,14 +339,16 @@
       .cra-tags { justify-content: center; }
       footer { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
     }
-    @media (max-width: 600px) {
+   @media (max-width: 600px) {
   .hero { padding: 48px 24px 40px; }
   .bento-grid { grid-template-columns: 1fr; }
-  .bento-card.wide { grid-column: span 1 !important; }
+  .bento-card.wide { grid-column: span 1; }
   .hero-right { gap: 10px; }
   .phone-mockup { width: 110px; }
+}
+    @media (max-width: 480px) {
   .orb { display: none; }
-  nav { backdrop-filter: none; }
+  nav { backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
   </style>
 </head>
